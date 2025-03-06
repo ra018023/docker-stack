@@ -1,0 +1,29 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    volumes:
+      - ${HOME}/Documents/homeassistant/config:/config:rw
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    network_mode: host
+    ports:
+      - 8123:8123
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:1.8-alpine
+    network_mode: bridge
+    restart: always
+    ports:
+      - "8086:8086"
+    volumes:
+      - ${HOME}/Documents/homeassistant/influxdb:/var/lib/influxdb
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - INFLUXDB_DB=home_assistant
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=user
+      - INFLUXDB_ADMIN_PASSWORD=useyourownpassword!
+      - INFLUXDB_USER=ha_user
+

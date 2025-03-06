@@ -1,0 +1,12 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    volumes:
+      - ${HOME}/Documents/mosquitto/config:/mosquitto/config
+      - ${HOME}/Documents/mosquitto/data:/mosquitto/data
+      - ${HOME}/Documents/mosquitto/log:/mosquitto/log
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - 1883:1883
+      - 9001:9001

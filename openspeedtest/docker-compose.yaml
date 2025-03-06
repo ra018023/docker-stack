@@ -1,0 +1,13 @@
+services:
+    speedtest:
+      # environment:
+      #     - ENABLE_LETSENCRYPT=True
+      #     - DOMAIN_NAME=speedtest.yourdomain.com
+      #     - USER_EMAIL=you@yourdomain.com
+      #     - VERIFY_OWNERSHIP="TXT-FILE-CONTENT"
+       restart: unless-stopped
+       container_name: openspeedtest
+       ports:
+            - '3000:3000'
+            - '3001:3001'
+       image: openspeedtest/latest

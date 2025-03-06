@@ -1,0 +1,14 @@
+services:
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+    volumes:
+      - ${HOME}/Documents/esphome/config:/config:rw
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: bridge
+    ports:
+      - 6052:6052
+    environment:
+      - ESPHOME_DASHBOARD_USE_PING=true

@@ -1,0 +1,24 @@
+services:
+  transmission:
+    image: linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+        #      - TRANSMISSION_WEB_HOME= #optional
+        #      - USER= #optional
+        #      - PASS= #optional
+        #      - WHITELIST= #optional
+        #      - PEERPORT= #optional
+        #      - HOST_WHITELIST= #optional
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${HOME}/Documents/transmission/config:/config
+      - ${HOME}/Downloads/torrents:/downloads
+      - ${HOME}/Downloads/torrents/watch:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped

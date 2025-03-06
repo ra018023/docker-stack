@@ -1,0 +1,18 @@
+services:
+  ollama:
+    image: ollama/ollama:rocm
+    container_name: ollama
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${HOME}/Documents/ai/ollama:/root/.ollama
+    ports:
+      - 11434:11434
+    devices:
+      - /dev/dri
+      - /dev/kfd
+    restart: unless-stopped
+

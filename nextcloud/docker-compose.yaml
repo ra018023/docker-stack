@@ -1,0 +1,15 @@
+services:
+  nextcloud:
+    image: linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ${HOME}/Documents/nextcloud/config:/config
+      - ${HOME}/Documents/nextcloud/data:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 443:443
+    restart: unless-stopped

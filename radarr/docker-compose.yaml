@@ -1,0 +1,16 @@
+services:
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${HOME}/Documents/radarr/config:/config
+      - /mnt:/downloads/radarr
+      - ${HOME}/Downloads/torrents:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
